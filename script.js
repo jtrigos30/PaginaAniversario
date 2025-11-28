@@ -1,7 +1,7 @@
 // --- CONFIGURACIÓN DEL TIEMPO ---
 // NOTA: Para probar ahora, dejamos esto así (Fecha Actual). 
 // Para el lanzamiento real, cambia a: const targetDate = new Date(2025, 10, 28, 15, 0, 0);
-const targetDate = new Date(2025, 10, 28, 16, 0, 0); 
+const targetDate = new Date().getTime() + 10000; 
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -260,4 +260,5 @@ window.addEventListener('resize', () => {
 // Iniciar animación
 
 animateParticles();
+
 
