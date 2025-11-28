@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Tercer Aniversario</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="countdown-overlay">
+        <div class="countdown-content">
+            <h2>Nuestro regalo se abre en:</h2>
+            <div id="timer">
+                <div class="time-unit"><span id="hours">00</span><small>Horas</small></div>
+                <div class="time-unit"><span id="minutes">00</span><small>Minutos</small></div>
+                <div class="time-unit"><span id="seconds">00</span><small>Segundos</small></div>
+            </div>
+            <p class="wait-text">La paciencia es la clave del amor...</p>
+        </div>
+    </div>
+
+    <main id="main-experience">
+        
+        <canvas id="sakura-canvas"></canvas>
+
+        <section class="section hero">
+            
+            <div class="hearts-container">
+                <svg class="heart-svg left-heart" viewBox="0 0 100 100" fill="none" stroke="#FF0055" stroke-width="2" stroke-linecap="round">
+                    <path class="branch" d="M50 100 V 70 C 50 60 20 60 20 40 C 20 20 40 20 50 35" /> 
+                    <path class="branch" d="M50 100 V 70 C 50 60 80 60 80 40 C 80 20 60 20 50 35" /> 
+                </svg>
+
+                <svg class="heart-svg right-heart" viewBox="0 0 100 100" fill="none" stroke="#FF0055" stroke-width="2" stroke-linecap="round">
+                    <path class="branch" d="M50 100 V 70 C 50 60 20 60 20 40 C 20 20 40 20 50 35" /> 
+                    <path class="branch" d="M50 100 V 70 C 50 60 80 60 80 40 C 80 20 60 20 50 35" /> 
+                </svg>
+
+                <svg class="heart-svg center-heart" viewBox="0 0 100 100" fill="none" stroke="#FF0055" stroke-width="2" stroke-linecap="round">
+                    <path class="branch" d="M50 100 V 70 C 50 60 20 60 20 40 C 20 20 40 20 50 35" /> 
+                    <path class="branch" d="M50 100 V 70 C 50 60 80 60 80 40 C 80 20 60 20 50 35" /> 
+                </svg>
+            </div>
+
+            <h1 class="hero-title">
+                <span class="line">Feliz</span>
+                <span class="line highlight">Aniversario</span>
+                <span class="line">#3</span>
+            </h1>
+            <div class="scroll-indicator">
+                <span>Desliza para descubrir</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <section class="section story">
+    
+            <div class="text-block glass-effect" data-speed="0.8">
+                <h2>Tres años de magia ✨</h2>
+                <p>Dicen que el tiempo vuela, pero contigo he aprendido a detenerlo en cada abrazo.</p>
+            </div>
+
+            <div class="text-block right glass-effect" data-speed="1.1">
+                <h2>Mi lugar seguro 🏠</h2>
+                <p>Gracias por ser mi paz en los días grises, mi locura en los días felices y mi refugio siempre.</p>
+            </div>
+
+            <div class="text-block glass-effect" data-speed="0.9">
+                <h2>Creciendo juntos 🌱</h2>
+                <p>Ver cómo hemos madurado, superado obstáculos y construido nuestros sueños es mi mayor orgullo.</p>
+            </div>
+
+            <div class="text-block right glass-effect" data-speed="1.2">
+                <h2>Risas infinitas 😂</h2>
+                <p>Por todas esas bromas locales que solo nosotros entendemos y esas carcajadas que nos curan el alma.</p>
+            </div>
+
+            <div class="text-block glass-effect" data-speed="1.0">
+                <h2>Aventura constante 🚀</h2>
+                <p>Contigo, hasta ir al supermercado se siente como una aventura. Gracias por hacer la vida emocionante.</p>
+            </div>
+
+            <div class="text-block right glass-effect" data-speed="1.3">
+                <h2>Y esto apenas comienza ♾️</h2>
+                <p>Tres años son solo el prólogo. Estoy listo para escribir el resto de nuestra historia a tu lado.</p>
+            </div>
+
+        </section>
+
+        <section class="section activity">
+            <h2>10 Secretos por descubrir...</h2>
+            <p>Raspa cada tarjeta individualmente para revelar el mensaje</p>
+            
+            <div class="scratch-grid">
+                
+                <div class="msg-card">
+                    <div class="card-content">
+                        <h3>01</h3>
+                        <p>"Eres mi casualidad favorita"</p>
+                    </div>
+                    <canvas class="scratch-pad"></canvas>
+                </div>
+
+                <div class="msg-card">
+                    <div class="card-content">
+                        <h3>02</h3>
+                        <p>"Tu risa me reinicia la vida"</p>
+                    </div>
+                    <canvas class="scratch-pad"></canvas>
+                </div>
+
+                <div class="msg-card">
+                    <div class="card-content">
+                        <h3>03</h3>
+                        <p>"Gracias por ser mi paz"</p>
+                    </div>
+                    <canvas class="scratch-pad"></canvas>
+                </div>
+
+                <div class="msg-card">
+                    <div class="card-content">
+                        <h3>04</h3>
+                        <p>"3 años y te sigo eligiendo"</p>
+                    </div>
+                    <canvas class="scratch-pad"></canvas>
+                </div>
+
+                <div class="msg-card">
+                    <div class="card-content">
+                        <h3>05</h3>
+                        <p>"Me encantas tal como eres"</p>
+                    </div>
+                    <canvas class="scratch-pad"></canvas>
+                </div>
+
+                <div class="msg-card">
+                    <div class="card-content">
+                        <h3>06</h3>
+                        <p>"Juntos somos invencibles"</p>
+                    </div>
+                    <canvas class="scratch-pad"></canvas>
+                </div>
+
+                <div class="msg-card">
+                    <div class="card-content">
+                        <h3>07</h3>
+                        <p>"Amo construir futuro contigo"</p>
+                    </div>
+                    <canvas class="scratch-pad"></canvas>
+                </div>
+
+                <div class="msg-card">
+                    <div class="card-content">
+                        <h3>08</h3>
+                        <p>"Eres mi gran Amor"</p>
+                    </div>
+                    <canvas class="scratch-pad"></canvas>
+                </div>
+
+                <div class="msg-card">
+                    <div class="card-content">
+                        <h3>09</h3>
+                        <p>"Te amo hasta el infinito"</p>
+                    </div>
+                    <canvas class="scratch-pad"></canvas>
+                </div>
+
+                <div class="msg-card">
+                    <div class="card-content">
+                        <h3>10</h3>
+                        <p>"Siempre serás mi persona favorita"</p>
+                    </div>
+                    <canvas class="scratch-pad"></canvas>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section gallery">
+            <h2>Nuestros Momentos</h2>
+            <p>Un pequeño resumen de nuestra eternidad juntos</p>
+            
+            <div class="gallery-grid">
+                
+                <div class="photo-card">
+                    <img src="Assets/foto1.jpg" alt="Momento 1">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="Assets/foto2.jpg" alt="Momento 2">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="Assets/foto3.jpg" alt="Momento 3">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="Assets/foto4.jpg" alt="Momento 4">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="Assets/foto5.jpg" alt="Momento 5">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="Assets/foto6.jpg" alt="Momento 6">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="Assets/foto7.jpg" alt="Momento 7">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="Assets/foto8.jpg" alt="Momento 8">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="Assets/foto9.jpg" alt="Momento 9">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="Assets/foto10.jpg" alt="Momento 10">
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section reason">
+            <div class="text-block glass-effect centered">
+                <h2>¿Por qué hice esto?</h2>
+                <p>A veces la distancia pesa. A veces, un mensaje de texto no es suficiente para decir "Te estoy pensando".</p>
+                <p>Quería crear una forma de tocar tu hombro a la distancia. Una conexión directa entre nuestros corazones, sin palabras, solo vibración.</p>
+            </div>
+        </section>
+
+        <section class="section final">
+            <img src="Assets/Icono Zumbido de Amor (color).png" alt="Love Buzz" class="app-logo pulse">
+            
+            <h2 class="neon-text">Love Buzz</h2>
+            <p>Tu regalo de aniversario te espera.</p>
+            
+            <a href="https://drive.google.com/file/d/1a61JXUg744-npvWxd9iYfD-CdxNe4IAE/view?usp=sharing" class="download-btn">
+                <i class="fab fa-android"></i> Descargar App
+                <div class="btn-glow"></div>
+            </a>
+            
+            <p class="instruction-text">*Instálalo y ábrelo para ver que sigue.*</p>
+        </section>
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

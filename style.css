@@ -1,0 +1,365 @@
+:root {
+    --bg-color: #0F0C29;
+    --neon-pink: #FF0055;
+    --neon-cyan: #00F7FF;
+    --neon-purple: #BD00FF;
+    --text-color: #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+}
+
+/* --- CONTADOR --- */
+#countdown-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background: var(--bg-color);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+#timer {
+    display: flex;
+    gap: 30px;
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 20px 0;
+    color: var(--neon-cyan);
+}
+
+.time-unit { display: flex; flex-direction: column; align-items: center; }
+.time-unit small { font-size: 1rem; font-weight: 300; color: white; margin-top: 5px; }
+
+/* --- EXPERIENCIA PRINCIPAL --- */
+#main-experience {
+    opacity: 0; /* Se muestra con JS */
+    transition: opacity 2s ease;
+}
+
+#sakura-canvas {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1; pointer-events: none;
+}
+
+.section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+
+/* --- HERO & CORAZONES (3 AÑOS) --- */
+.hearts-container {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 20px;
+    position: relative; /* Para poder encimar los SVG */
+    /* El filtro se aplica al contenedor para que todos brillen igual */
+    filter: drop-shadow(0 0 8px #FF0055);
+}
+
+.heart-svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: bottom center; /* Rotan desde la base */
+}
+
+/* Posicionamiento de cada año */
+.left-heart {
+    transform: rotate(-50deg) scale(0.9); /* Inclinado a la izquierda */
+    z-index: 1;
+}
+
+.right-heart {
+    transform: rotate(50deg) scale(0.9); /* Inclinado a la derecha */
+    z-index: 1;
+}
+
+.center-heart {
+    transform: scale(1.1); /* El centro es un poco más grande (año actual) */
+    z-index: 2;
+}
+
+/* Configuración de las líneas (ramas) */
+.branch {
+    stroke-dasharray: 130;
+    stroke-dashoffset: 130;
+    /* Sin puntos: las líneas terminan limpiamente */
+    opacity: 0.9;
+}
+
+/* --- ANIMACIÓN SECUENCIAL --- */
+/* Solo se activa cuando JS agrega la clase .active-animation */
+
+/* Año 1 (Izquierda) - Sale primero */
+.hearts-container.active-animation .left-heart .branch {
+    animation: drawLine 3s ease-out forwards;
+}
+
+/* Año 2 (Derecha) - Sale un poco después */
+.hearts-container.active-animation .right-heart .branch {
+    animation: drawLine 3s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+/* Año 3 (Centro) - Sale al final y completa el ramo */
+.hearts-container.active-animation .center-heart .branch {
+    animation: drawLine 3s ease-out forwards;
+    animation-delay: 1s;
+}
+
+@keyframes drawLine {
+    to { stroke-dashoffset: 0; }
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    text-align: center;
+    line-height: 1.1;
+    z-index: 2;
+}
+.highlight {
+    font-family: 'Playfair Display', serif;
+    color: var(--neon-pink);
+    font-style: italic;
+    display: block;
+    text-shadow: 0 0 20px var(--neon-pink);
+}
+
+/* ESTILO CRISTAL (GLASS) */
+.glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 80%; /* Un poco más ancho para móviles */
+    margin: 20px; /* Separación vertical */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    
+    /* POR DEFECTO: Se pega a la izquierda */
+    align-self: flex-start; 
+    text-align: left;
+    border-left: 4px solid var(--neon-pink); /* Decoración borde izquierdo */
+}
+
+.text-block.right { 
+    align-self: flex-end; 
+    text-align: right;
+    border-left: none; 
+    border-right: 4px solid var(--neon-cyan); /* Decoración borde derecho */
+}
+
+.text-block.centered { 
+    align-self: center; 
+    text-align: center; 
+    border: none;
+    border-bottom: 4px solid var(--neon-purple); 
+}
+
+/* --- RASPA Y GANA MÚLTIPLE --- */
+.scratch-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 900px;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.msg-card {
+    position: relative; /* Clave para posicionar el canvas encima */
+    width: 160px;
+    height: 120px;
+    background: white;
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    overflow: hidden; /* Para que el canvas no se salga de los bordes */
+    
+    /* Centrado del texto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.card-content {
+    padding: 10px;
+    z-index: 1; /* El texto va abajo */
+}
+
+.card-content h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--neon-pink);
+}
+
+.card-content p {
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+/* El Canvas individual cubre toda la tarjeta */
+.scratch-pad {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* El canvas va arriba tapando el texto */
+    cursor: grab;
+    transition: opacity 0.5s;
+}
+
+/* Si ya se raspó mucho, hacemos que desaparezca suavemente (opcional, manejado en JS) */
+.scratch-pad.revealed {
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* --- ESTILO ORGÁNICO (Rotaciones y Colores) --- */
+.msg-card:nth-child(odd) { transform: rotate(-3deg); background: #fff0f5; }
+.msg-card:nth-child(even) { transform: rotate(3deg); background: #e0f7fa; }
+.msg-card:nth-child(3n) { transform: rotate(-5deg); background: #f3e5f5; }
+.msg-card:nth-child(5n) { transform: rotate(2deg); background: #fffde7; }
+
+.msg-card:hover {
+    transform: scale(1.1) rotate(0deg) !important;
+    z-index: 10;
+    box-shadow: 0 0 20px var(--neon-pink);
+}
+
+/* --- GALERÍA TIPO MURAL POLAROID --- */
+.gallery-grid {
+    display: flex;
+    flex-wrap: wrap; /* Permite que bajen a la siguiente línea */
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Espacio entre fotos */
+    padding: 40px 10px;
+    max-width: 1000px; /* Ancho máximo del mural */
+}
+
+.photo-card {
+    /* Tamaño fijo estilo foto impresa */
+    width: 180px; 
+    height: 220px;
+    background: white; /* Borde blanco tipo Polaroid */
+    padding: 10px; 
+    padding-bottom: 30px; /* Espacio abajo para parecer polaroid */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), z-index 0s;
+    position: relative;
+    border-radius: 4px;
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2px;
+    filter: sepia(20%); /* Un toque vintage opcional */
+}
+
+/* --- EFECTO ORGÁNICO (DESORDENADO) --- */
+
+/* Rotamos las pares e impares diferente */
+.photo-card:nth-child(odd) {
+    transform: rotate(-3deg);
+    z-index: 1;
+}
+
+.photo-card:nth-child(even) {
+    transform: rotate(3deg) translateY(10px); /* Un poco más abajo */
+    z-index: 1;
+}
+
+/* Variaciones extra para que no se vea repetitivo */
+.photo-card:nth-child(3n) { transform: rotate(-6deg); }
+.photo-card:nth-child(4n) { transform: rotate(5deg) translateY(-5px); }
+.photo-card:nth-child(7n) { transform: rotate(-2deg) scale(1.05); }
+
+/* AL PASAR EL MOUSE (HOVER) */
+.photo-card:hover {
+    transform: scale(1.2) rotate(0deg) !important; /* Se endereza y crece */
+    z-index: 100; /* Se pone ENCIMA de todas las demás */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    filter: none;
+}
+
+/* FINAL */
+.app-logo { 
+    width: 100px; 
+    border-radius: 25px; /* Bordes redondeados estilo iOS/Android */
+    margin-bottom: 20px; 
+    
+    /* --- CAMBIOS PARA EL FONDO --- */
+    background-color: #E1F5FE; /* Azul claro muy suave */
+    padding: 15px; /* Espacio entre tu logo y el borde azul */
+    
+    /* Le damos un brillo cyan para que combine con el neón de la página */
+    box-shadow: 0 0 30px var(--neon-cyan); 
+}
+
+.pulse { 
+    animation: pulse 2s infinite; 
+}
+
+.download-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 40px;
+    background: var(--neon-pink);
+    color: white; text-decoration: none;
+    border-radius: 50px; font-weight: bold; font-size: 1.2rem;
+    margin-top: 20px; position: relative; overflow: hidden;
+    transition: 0.3s;
+}
+.download-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--neon-pink); }
+
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+/* --- AJUSTE DE ESPACIO FINAL --- */
+
+/* Hacemos que la sección de texto y la final dejen de ser pantalla completa */
+.section.reason,
+.section.final {
+    min-height: auto !important; /* Importante para sobrescribir la regla anterior */
+    height: auto;
+    padding-top: 90px;
+    padding-bottom: 20px;
+}
+
+/* Quitamos el espacio inferior del texto */
+.section.reason {
+    padding-bottom: 0; 
+    margin-bottom: 0;
+}
+
+/* Quitamos el espacio superior del bloque final */
+.section.final {
+    padding-top: 10px;
+    justify-content: flex-start; /* Alinea el contenido arriba, no al centro */
+}
